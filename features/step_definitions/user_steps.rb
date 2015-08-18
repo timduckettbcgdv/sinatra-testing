@@ -5,9 +5,13 @@ end
 
 When(/^a user exists with the following values:$/) do |table|
   # table is a Cucumber::Core::Ast::DataTable
-  @user_values = table.rows_hash
-  user = User.create(:firstname => @user_values['firstname'], :lastname => @user_values['lastname'])
-  user.save
+  user_values = table.hashes
+  
+  user_values.each do |values|
+    user = User.create(:firstname => values['firstname'], :lastname => values['lastname'])
+    user.save
+  end
+  
 end
 
 When(/^I visit the users page$/) do
