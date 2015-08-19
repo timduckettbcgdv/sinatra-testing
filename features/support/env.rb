@@ -7,6 +7,7 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib/sample_app.rb')
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
+require 'json_spec/cucumber'
 
 Capybara.app = SampleApp
 
@@ -18,4 +19,8 @@ end
 
 World do
   SampleAppWorld.new
+end
+
+def last_json
+  page.source
 end
